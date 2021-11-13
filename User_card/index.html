@@ -1,18 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
 <body>
 
 
-
 <!--Первая задача в Вашем проекте - Вывод на экран карточки пользователя-->
+<h3>Введите информацию о себе:</h3><br>
+<form action="card.php" method="get" style="width: 600px;">
+    <input class="form-control" type="text" placeholder="фамилия" name="surname"><br>
+    <input class="form-control" type="text" placeholder="имя" name="name"><br>
+    <input class="form-control" type="text" placeholder="отчество" name="sub_name"><br>
+    <input class="form-control" type="date" placeholder="дата рождения" name="birthday"><br>
+    <input class="form-control" type="color" placeholder="любимый цвет" name="color"><br>
+    <input class="form-control" type="email" placeholder="электронная почта" name="mail"><br>
+    <input class="form-control" type="text" placeholder="адрес проживания" name="address"><br>
+    <input class="form-control" type="text" placeholder="номер телефона" name="tel"><br>
+    <textarea class="form-control" name="about" placeholder="расскажите о себе"></textarea><br>
+    <button type="submit" class="btn btn-success">Отправить данные</button>
+</form>
 
 
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+-->
 </body>
 </html>
+
