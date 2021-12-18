@@ -1,19 +1,26 @@
 <?php
 
-$auto = ['Peugeot','Mercedes','BMW','Lada','Toyota','KIA',];
+$auto = ['Peugeot','Mercedes','BMW','Lada','Toyota','KIA'];
+
 $peugeot = ['206','307','207','Partner','Boxer'];
 $mercedes = ['Benz','Gelandewagen','CLS','1983 190E Cosworth','1963 600 Pullman'];
 $bmw = ['x6','x5','3-Series Gran Turismo ','x4','z4'];
 $lada = ['Granta','Kalina','Priora','Vesta','X-Ray'];
 $toyota = ['Camry','Corolla','Yaris','Prius','Highlander'];
 $kia = ['Rio','Picanto','Ceed','Stinger','K900'];
+
+
 $countries = ['Китай','Россия','Испания','Италия','Германия','США'];
+
 # Объём двигателя - случайное от 1 до 2
-#rand(1,3)
+
+# Топливо
 $fuel = ['Газ','Бензин','Электричество','Солярка'];
+# Цвет
 $color = ['Красный','Синий','Чёрный','Жёлтый','Зелёный'];
+
 # Разгон - случайное от 3 до 15
-#rand(1.1,2.0)
+#rand(3, 15)
 
 
 # Генерация набора данных
@@ -57,10 +64,14 @@ for ($i = 0; $i < 5000; $i++) {
     # Главный массив данных. Ключом записываем переменную $auto_mark_model, а значением - характеристики
     $automobiles_data_full[$auto_mark_model] = $auto_datas;
 }
+echo '<pre>';
+var_dump($automobiles_data_full);
+echo '</pre>';
+
 
 
 // Если форма не отправлена, то показываем её
-if ($_GET != []) {
+if (!isset($_GET['fuel'])) {
     echo '<form method="get">';
     echo '
 <label for="country">Страна</label>
@@ -86,6 +97,7 @@ if ($_GET != []) {
 //var_dump($automobiles_data_full);
 //echo '</pre>';
 # Поиск данных
+
 # Разбиваем массивы для удобства их использования. Первый - марки авто. Второй - характеристики
 $autos = array_keys($automobiles_data_full);
 $charact = array_values($automobiles_data_full);
@@ -109,6 +121,8 @@ for ($i = 0; $i < count($charact); $i++) {
         }
     }
 }
+
+
 echo '<pre>';
 var_dump($result);
 echo '</pre>';
