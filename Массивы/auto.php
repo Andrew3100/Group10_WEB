@@ -121,8 +121,6 @@ for ($i = 0; $i < count($charact); $i++) {
         }
     }
 }
-
-
 echo '<pre>';
 var_dump($result);
 echo '</pre>';
