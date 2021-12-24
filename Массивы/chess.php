@@ -1,10 +1,12 @@
+
+
 <?php
 
 
 
 
-$rand_ladya_x = rand(1,8);
-$rand_ladya_y = rand(1,8);
+$rand_ladya_x = 1/*rand(1,8)*/;
+$rand_ladya_y = 1/*rand(1,8)*/;
 $rand_ladya_coord = $rand_ladya_x.'_'.$rand_ladya_y;
 
 
@@ -20,83 +22,17 @@ while ($rand_peshka_1 == $rand_ladya_coord OR $rand_peshka_2 == $rand_ladya_coor
 }
 
 
-$j = 0;
 for ($i = 1; $i <= 8; $i++) {
+
+    // Данное условие необходимо для проверки битой клетки по строке
     if ($i == $rand_ladya_x) {
         $attack = 1;
     }
     else {
         $attack = 0;
     }
-    for ($k = 1; $k <= 8; $k++) {
 
-        if ($i == $rand_ladya_y) {
-            $attack1 = 1;
-        }
-        else {
-            $attack1 = 0;
-        }
-
-
-        // Соединяем текущие координаты, чтобы сравнить их со случайными координатами клеток
-        $fix_figure = $k.'_'.$i;
-        // Если соединённые координаты равны координатам либо первой, либо второй, либо третьей пешки
-        if ($fix_figure == $rand_peshka_1 OR $fix_figure == $rand_peshka_2 OR $fix_figure == $rand_peshka_3) {
-            // то в $figure пишем наличие фигуры
-            $figure = 'Тут расположена пешка';
-        }
-        else {
-            // Если нет, то пустое значение
-            $figure = NULL;
-        }
-
-        // Ключ - координата клетки. Значение - массив, в котором элементы
-        // $attack - клетка под атакой ладьи или нет
-        // $figure - если 1, то в этой клетке стоит пешка, 0 - клетка пустая
-        // $color  - цвет клетки
-        $attack3 = $attack.'_'.$attack1;
-        $data[$i.'_'.$k] = [
-                $figure,
-                $attack3,
-        ];
-    }
-}
-echo '<pre>';
-var_dump($data);
-echo '</pre>';
-exit();
-
-
-//echo '<pre>';
-//var_dump($data);
-//echo '</pre>';
-//
-//
-//
-//
-
-
-
-
-
-
-
-
-
-echo '<table border="1" style="margin: auto">';
-$sym = ['A','B','C','D','E','F','G','H'];
-
-$rand_i = 2/*rand(1,8)*/;
-$rand_k = 2/*rand(1,8)*/;
-
-for ($i = 1; $i <= 8; $i++) {
-    echo '<tr>';
-    if ($i == $rand_i) {
-        $attack = 1;
-    }
-    else {
-        $attack = 0;
-    }
+    // Данное условие необходимо для определения цвета клетки
     if ($i%2==0) {
         // Фиксируем в переменной тот факт, что обрабатывается чётная строка
         $line = 'even';
@@ -106,14 +42,8 @@ for ($i = 1; $i <= 8; $i++) {
     }
 
     for ($k = 1; $k <= 8; $k++) {
-        if ($k == $rand_k) {
-            $attack1 = 1;
-        }
-        else {
-            $attack1 = 0;
-        }
-        $coordinates_row[] = $i.'_'.$k;
-        // Если строка чётная
+
+        // Условие проверяет, какую строку обрабатываем, в зависимости от этого даём клетке тот или иной цвет
         if ($line == 'even') {
             if ($k % 2 != 0 ) {
                 $color = 'black';
@@ -130,20 +60,106 @@ for ($i = 1; $i <= 8; $i++) {
                 $color = 'white';
             }
         }
-        if ($i == $rand_i AND $k == $rand_k) {
-            $ladya_photo = '<img style="width: 20px; height: 50px;margin: 0px auto 0px; display: block;" src="ladya.png">';
+
+        // Условие  проверяет битую клетку по столбцу
+        if ($k == $rand_ladya_y) {
+            $attack1 = 1;
         }
         else {
-            $ladya_photo = '';
+            $attack1 = 0;
         }
+
+
+        // Соединяем текущие координаты, чтобы сравнить их со случайными координатами клеток
+        $fix_figure = $i.'_'.$k;
+        // Если соединённые координаты равны координатам либо первой, либо второй, либо третьей пешки
+        if ($fix_figure == $rand_peshka_1 OR $fix_figure == $rand_peshka_2 OR $fix_figure == $rand_peshka_3) {
+            // то в $figure пишем наличие фигуры
+            $figure = 'peshka';
+        }
+        else {
+            // Фиксируем ладью в клетке
+            if ($fix_figure == $rand_ladya_coord) {
+                $figure = 'ladya';
+            }
+            else {
+                // Если нет, то пустое значение
+                $figure = NULL;
+            }
+
+        }
+
+        // Ключ - координата клетки. Значение - массив, в котором элементы
+        // $attack - клетка под атакой ладьи или нет. 0_0 - клетка не тронута, 0_1 или 1_0 - клетка битая. 1_1 - там ладья
+        // $figure - если 1, то в этой клетке стоит пешка, 0 - клетка пустая
+        // $color  - цвет клетки
         $attack3 = $attack.'_'.$attack1;
-        echo "<td style='background-color: $color; width: 80px; height: 80px;'>$ladya_photo $attack3</td>";
+        if ($attack3 == '0_1' OR $attack3 == '1_0') {
+            $attack_full = 1;
+        }
+        else {
+            $attack_full = 0;
+        }
+        $data[$i.'_'.$k] = [
+            $figure,
+            $attack_full,
+            $color
+        ];
+    }
+    $data_full[] = $data;
+    unset($data);
+
+}
+
+
+
+echo '<pre>';
+//var_dump($data_full);
+echo '</pre>';
+
+
+
+echo '<table border="1" style="margin: auto">';
+$sym = ['A','B','C','D','E','F','G','H'];
+
+
+
+
+for ($i = 0; $i < count($data_full); $i++) {
+    echo '<tr>';
+    for ($k = 0; $k < count($data_full[$i]); $k++) {
+        $cell_figure = $data_full[$i][($i+1).'_'.($k+1)][0];
+        $cell_attack = $data_full[$i][($i+1).'_'.($k+1)][1];
+        $cell_color = $data_full[$i][($i+1).'_'.($k+1)][2];
+
+
+        if ($cell_attack == 1 AND $cell_figure == 'peshka') {
+            $cell_color_real = 'red';
+
+        }
+        else {
+            $cell_color_real = $cell_color;
+        }
+
+
+
+        // Вставка фигуры
+        if ($cell_figure == 'ladya') {
+            $cell_figure = '<p style="text-align: center"><img src="ladya.png" style="width: 25px; height: 40px;"></p>';
+        }
+        else {
+            if ($cell_figure == 'peshka') {
+                $cell_figure = '<p style="text-align: center"><img src="peshka.png" style="width: 25px; height: 40px;"></p>';
+        }
+            else {
+                $cell_figure = '';
+            }
+        }
+
+        echo "<td style='background-color: $cell_color_real; height: 50px; width: 50px;'>$cell_figure </td>";
 
     }
+    unset($cell_attack);
     echo '</tr>';
 }
 echo '</table>';
-
-echo '<pre>';
-var_dump($coordinates_row);
-echo '</pre>';
