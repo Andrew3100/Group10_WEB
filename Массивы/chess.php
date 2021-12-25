@@ -1,14 +1,8 @@
-
-
 <?php
 
-
-
-
-$rand_ladya_x = 1/*rand(1,8)*/;
-$rand_ladya_y = 1/*rand(1,8)*/;
+$rand_ladya_x = rand(1,8);
+$rand_ladya_y = rand(1,8);
 $rand_ladya_coord = $rand_ladya_x.'_'.$rand_ladya_y;
-
 
 $rand_peshka_1 = $rand_ladya_x;
 $rand_peshka_2 = $rand_ladya_x;
@@ -113,21 +107,18 @@ for ($i = 1; $i <= 8; $i++) {
 
 
 
-echo '<pre>';
-//var_dump($data_full);
-echo '</pre>';
+
 
 
 
 echo '<table border="1" style="margin: auto">';
-$sym = ['A','B','C','D','E','F','G','H'];
-
-
 
 
 for ($i = 0; $i < count($data_full); $i++) {
     echo '<tr>';
     for ($k = 0; $k < count($data_full[$i]); $k++) {
+
+
         $cell_figure = $data_full[$i][($i+1).'_'.($k+1)][0];
         $cell_attack = $data_full[$i][($i+1).'_'.($k+1)][1];
         $cell_color = $data_full[$i][($i+1).'_'.($k+1)][2];
@@ -140,8 +131,6 @@ for ($i = 0; $i < count($data_full); $i++) {
         else {
             $cell_color_real = $cell_color;
         }
-
-
 
         // Вставка фигуры
         if ($cell_figure == 'ladya') {
@@ -156,10 +145,10 @@ for ($i = 0; $i < count($data_full); $i++) {
             }
         }
 
-        echo "<td style='background-color: $cell_color_real; height: 50px; width: 50px;'>$cell_figure </td>";
+        echo "<td style='background-color: $cell_color_real; height: 50px; width: 50px;'>$cell_figure</td>";
 
     }
-    unset($cell_attack);
+
     echo '</tr>';
 }
 echo '</table>';

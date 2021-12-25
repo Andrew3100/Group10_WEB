@@ -54,8 +54,10 @@ for ($i = 0; $i < 5; $i++) {
 
 }
 
+
 // Рисуем таблицу
-echo '<div class="container" style="margin-top: 130px;"><table class="table table-bordered">';
+echo '<div class="container" style="margin-top: 130px;">
+<table class="table table-bordered">';
 for ($i = 0; $i < count($numbers); $i++) {
     echo '<tr>';
     for ($k = 0; $k < count($numbers[$i]); $k++) {
