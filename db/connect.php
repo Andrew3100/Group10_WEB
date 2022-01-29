@@ -22,12 +22,14 @@ if ($mysqli->connect_error) {
 // Метод query позволяет передать SQL запрос на выполнение
 $time_create = time();
 
-//$mysqli->query("INSERT INTO `test`.`users` (`name`, `surname`, `email`, `date_create`) VALUES ('Иван', 'Петров', 'ivan@mail.ru', $time_create)");
-//$mysqli->query("UPDATE `test`.`users` SET `email` = 'ivan@mai' WHERE (`id` = '1')");
+# $mysqli->query("INSERT INTO `test`.`users` (`name`, `surname`, `email`, `date_create`) VALUES ('Иван', 'Петров', 'ivan@mail.ru', '$time_create')");
+
+$mysqli->query("UPDATE `test`.`users` SET `email` = 'ivan@' WHERE (`id` = '1')");
 
 $select = $mysqli->query("SELECT * FROM users");
 
 while ($s = mysqli_fetch_assoc($select)) {
     echo $s['surname'];
+    echo '<br>';
 }
 
