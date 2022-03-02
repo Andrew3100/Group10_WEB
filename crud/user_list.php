@@ -51,8 +51,17 @@ while ($sel = mysqli_fetch_assoc($select)) {
 
 
 }
-echo '</table>';
+echo '</table><br>';
 
-
+echo '
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <a class="btn btn-success" href="print_to_excel.php">Сохранить в Excel</a>
+        </div>
+    </div>
+</div>
+    
+';
 
 ?>
