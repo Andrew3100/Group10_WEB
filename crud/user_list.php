@@ -64,4 +64,19 @@ echo '
     
 ';
 
+echo '<br><br>
+<div class="container">
+    <div class="row">
+    <form method="post" action="upload_excel.php" enctype="multipart/form-data">
+        <div class="col text-center">
+            <input style="width: 400px; margin: auto" type="file" name="excel" class="form-control">
+            <br>
+            <button class="btn btn-warning" type="submit">Импорт из файла</button>
+        </div>
+    </div>
+    </form>
+</div>
+    
+';
+
 ?>

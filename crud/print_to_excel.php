@@ -13,7 +13,7 @@ $mysqli = new mysqli($db_host, $db_user, $db_password, $db_base);
 
 # Подключение методов для работы с Excel
 include 'Classes/PHPExcel.php';
-//include 'db.php';
+#include 'db.php';
 
 # Новый документ Excel
 $excel = new PHPExcel();
@@ -27,9 +27,10 @@ $excel->getActiveSheet()->setCellValue('C1','Фамилия');
 $excel->getActiveSheet()->setCellValue('D1','Почта');
 $excel->getActiveSheet()->setCellValue('E1','Дата создания аккаунта');
 
+# Получаем данные из БД
 $select = $mysqli->query("SELECT * FROM users");
 
-$i = 1;
+$i = 2;
 while ($s = mysqli_fetch_assoc($select)) {
     $excel->getActiveSheet()->setCellValue('A'.$i,$s['id']);
     $excel->getActiveSheet()->setCellValue('B'.$i,$s['name']);
@@ -39,10 +40,9 @@ while ($s = mysqli_fetch_assoc($select)) {
     $i++;
 }
 
-
-
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="report.xlsx');
 header('Cash-Control: max-age=0');
+
 $file = PHPExcel_IOFactory::createWriter($excel,'Excel2007');
-$file->save('php://output');
+$file->save('php ://output');
