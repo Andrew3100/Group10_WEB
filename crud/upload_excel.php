@@ -16,3 +16,4 @@ while ($value = $excel->getActiveSheet()->getCell('A'.$i)->getValue()!="") {
     echo $excel->getActiveSheet()->getCell('A'.$i)->getValue().'<br>';
     $i++;
 }
+
