@@ -1,6 +1,5 @@
 <?php
 
-
 if ($_COOKIE['user'] == '') {
     $user = 'Гость.'.'<a href="auth_form.php"> По этой ссылке можно авторизоваться</a>';
     $exit = '';
