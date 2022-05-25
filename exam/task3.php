@@ -10,6 +10,7 @@ echo '<pre>';
 ($array = explode(' ',$text));
 echo '</pre>';
 foreach ($array as $key => $value) {
+
         if (strpos($value,'.') > 0) {
             $new_str = str_replace('.','',$value);
             $array[$key] = $new_str;
@@ -25,11 +26,8 @@ foreach ($array as $key => $value) {
         if ($value == '–') {
             unset($array[$key]);
         }
+
 }
-
-
-
-
 
 foreach ($array as $key => $value) {
     $sub_str = str_split($value);
