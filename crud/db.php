@@ -39,6 +39,7 @@ $db_base = 'test';
 // Для осуществления подключения необходимо создать экземпляр нового подключения и передать в него параметры
 $mysqli = new mysqli($db_host, $db_user, $db_password, $db_base);
 
+
 if ($mysqli->connect_error) {
     echo "Ошибка подключения к базе данных";
 }
